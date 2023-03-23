@@ -7,110 +7,213 @@ info:
 servers:
   - url: http://localhost:4000
 tags:
-  - name: examples
+  - name: students
+  - name: languages
 paths:
-  /examples:
+  /students:
     post:
       tags:
-        - examples
-      summary: Example POST route
-      description: Description of an example POST route
+        - students
+      summary: Create a student
+      description: Add a new student to the list
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateExample'
+              $ref: '#/components/schemas/CreateStudent'
       responses:
         201:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Example'
+                $ref: '#/components/schemas/Student'
     get:
       tags:
-        - examples
-      summary: Example GET route
-      description: Description of an example GET route
+        - students
+      summary: Get all students
+      description: Get all students from the list
       responses:
         200:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AllExamples'
-  /examples/{id}:
+                $ref: '#/components/schemas/AllStudents'
+  /students/{firstName}:
+    get:
+      tags:
+        - students
+      summary: Get a student
+      description: Get a single student by their first name
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
     put:
       tags:
-        - examples
-      summary: Example PUT route
-      description: Description of an example PUT route
+        - students
+      summary: Update a student
+      description: Update a student's details using the firstName provided. Just update the first student found in the list with the provided first name.
       parameters:
-        - name: id
+        - name: firstName
           in: path
-          description: The ID of the example to update
+          description: The first name of the student to update
           required: true
           schema:
-            type: integer
+            type: string
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateExample'
+              $ref: '#/components/schemas/CreateStudent'
       responses:
         201:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Example'
+                $ref: '#/components/schemas/Student'
     delete:
       tags:
-        - examples
-      summary: Example DELETE route
-      description: Description of an example DELETE route
+        - students
+      summary: Delete a student
+      description: Remove a student from the list and send that student back to the client
       parameters:
-        - name: id
+        - name: firstName
           in: path
-          description: The ID of the example to delete
+          description: The first name of the student to update
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         200:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Example'
+                $ref: '#/components/schemas/Student'
+
+  /languages:
+    post:
+      tags:
+        - languages
+      summary: Create a language
+      description: Add a new language to the list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLanguage'
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Language'
+    get:
+      tags:
+        - languages
+      summary: Get all languages
+      description: Get all languages from the list
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllLanguages'
+  /languages/{name}:
+    get:
+      tags:
+        - languages
+      summary: Get a language
+      description: Get a single language by name
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Language'
+    put:
+      tags:
+        - languages
+      summary: Update a language
+      description: Update a language's name. Just update the first language found in the list with the provided name.
+      parameters:
+        - name: name
+          in: path
+          description: The name of the language to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLanguage'
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Language'
+    delete:
+      tags:
+        - languages
+      summary: Delete a language
+      description: Remove a language from the list and send that language back to the client
+      parameters:
+        - name: name
+          in: path
+          description: The name of the language to update
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Language'
 
 components:
   schemas:
-    CreateExample:
+    CreateStudent:
       type: object
-      required: [propertyOne, propertyTwo]
+      required: [firstName, lastName]
       properties:
-        propertyOne:
+        firstName:
           type: string
-          example: "Example Value"
-        propertyTwo:
-          type: email
-          format: email
-          example: "example@email.value"
-    Example:
+          example: "Nathan"
+        lastName:
+          type: string
+          example: "King"
+    Student:
       type: object
       properties:
-        id:
-          type: integer
-          example: 1
-        propertyOne:
+        firstName:
           type: string
-          example: "Example Value"
-        propertyTwo:
+          example: "Nathan"
+        lastName:
           type: string
-          example: "example@email.value"
-        createdAt:
-          type: string
-          format: DateTime
-          pattern: YYYY-MM-DDTHH:MM:SS
-          example: 2023-03-14T11:01:56.633+00:00
-    AllExamples:
+          example: "King"
+    AllStudents:
       type: array
       items:
-        $ref: '#/components/schemas/Example'
+        $ref: '#/components/schemas/Student'
+
+    CreateLanguage:
+      type: object
+      required: [ name ]
+      properties:
+        name:
+          type: string
+          example: "Java"
+    Language:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Java"
+    AllLanguages:
+      type: array
+      items:
+        $ref: '#/components/schemas/Language'
