@@ -54,7 +54,7 @@ It can be a little confusing at first glance but it contains everything a develo
 
 As a developer, it's your job to build the API so that it satisfies the spec exactly. Attention to detail is important!
 
-[Here's the spec for this exercise.](./) Spend some time getting familiar with it and pay close attention to the details.
+[Here's the spec for this exercise.](https://boolean-uk.github.io/java-api-requests-responses/) Spend some time getting familiar with it and pay close attention to the details.
 
 The `Students` class is already partially built for you to help you get started. This is the last time you'll receive boilerplate code as a starter, so spend some time understanding it. Experiment & change it until you feel comfortable.
 
@@ -64,4 +64,4 @@ All extensions going forward will be presented as a separate API spec. Sometimes
 
 This one will have you considering the concept of unique identifiers for records.
 
-[Here's the extension spec.](./)
+[Here's the extension spec.](https://boolean-uk.github.io/java-api-requests-responses/extensions)
