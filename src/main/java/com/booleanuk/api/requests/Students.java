@@ -31,6 +31,7 @@ public class Students {
     }
 
     @GetMapping("/{firstName}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public Student getStudentByFirstName(@PathVariable String firstName) {
         List<Student> allStudents = getAll();
         for (Student student : allStudents) {
@@ -43,6 +44,7 @@ public class Students {
     }
 
     @PutMapping("/{firstName}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public Student updateStudent(@PathVariable String firstName, @RequestBody Student updateStudent) {
         List<Student> allStudents = getAll();
 
@@ -58,6 +60,7 @@ public class Students {
     }
 
     @DeleteMapping("/{firstName}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public Student deleteStudent(@PathVariable String firstName) {
         List<Student> allStudents = getAll();
 
