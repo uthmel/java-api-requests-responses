@@ -63,4 +63,12 @@ public class Books {
 
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Book deleteBook(@PathVariable int id) {
+        List<Book> allBooks = getAll();
+        allBooks.removeIf(book -> book.getId() == id);
+        return null;
+    }
+
 }
