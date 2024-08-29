@@ -5,8 +5,11 @@ public class Book {
     private int numPages;
     private String author;
     private String genre;
+    private int id;
+    private static int nextId = 1;
 
     public Book(String title, int numPages, String author, String genre) {
+        this.id = nextId++;
         this.title = title;
         this.numPages = numPages;
         this.author = author;
@@ -43,5 +46,13 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
